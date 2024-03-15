@@ -1,0 +1,177 @@
+---
+// const posts = await Astro.glob('../pages/posts/*.md');
+//microCMS呼び出し
+import { getBlogs } from "../library/microcms";
+const response = await getBlogs({ fields: ["id", "title", "category", "eyecatch", "description, codeArea"] });
+
+// export const getStaticPaths = async () => {
+// 	const tags = await client.get({
+//     endpoint: "tags",
+// 	})
+// 	const paths = tags.contents.map((content) => `/tags/${content.id}`);
+
+// 	return {
+// 		paths,
+// 		fallback: false
+// 	}
+// };
+
+---
+
+<!-- <ul class="post-list">
+	{posts.map(post =>
+	<li>
+		<a href={post.url}>
+			<img src={post.frontmatter.image} alt=""/>
+			<div>
+				<h3>{post.frontmatter.title}</h3>
+				<ul class="tags-list">{post.frontmatter.tags.map((tag) => <li>{tag}</li>)}</ul>
+				<p>{post.frontmatter.txt}</p>
+			</div>
+		</a>
+	</li>
+	)}
+</ul> -->
+<ul class="post-list">
+	{
+		response.contents.map((content: any) => (
+		<li>
+            <a href={content.id}>
+				<div class="post-list__img">
+					<img
+						width={content.eyecatch.width}
+						height={content.eyecatch.height}
+						src={content.eyecatch.url}
+						alt={`img_${content.title}/`}
+					/>
+				</div>
+				<div>
+					<ul class="tags-list">
+						{content.category.map((category: any) => (
+							<li>{category.name}</li>
+						))}
+					</ul>
+					<h3>{content.title}</h3>
+					<p class="description">{content.description}</p>
+				</div>
+			</a>
+		</li>
+		))
+	}
+</ul>
+<style>
+	.post-list {
+		margin-top: 40px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 40px;
+
+		@container (max-width: 750px) {
+			grid-template-columns: 1fr;
+			margin-inline: auto;
+		}
+
+		& > li {
+			aspect-ratio: 3 / 4;
+			border-radius: 30px;
+			background-color: #fff;
+			overflow: hidden;
+			color: #000;
+		}
+
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			transition: opacity 0.3s;
+			&:hover {
+				opacity: 0.8;
+			}
+		}
+
+		.post-list__img {
+			display: grid;
+			place-content: center;
+			height: 40%;
+			padding-inline: 10%;
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			text-align: center;
+		}
+
+		div {
+			padding: 1rem;
+		}
+
+		h3 {
+			margin-top: 20px;
+			font-size: 20px;
+			font-weight: bold;
+		}
+
+		p {
+			margin-top: 5px;
+			font-size: 16px;
+		}
+	}
+
+	.tags-list {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+
+		li {
+			display: inline-block;
+			padding: 0.2em 1.2em;
+			background-color: #333;
+			color: #fff;
+			font-size: 14px;
+			border-radius: 50em;
+		}
+	}
+
+	.description {
+		white-space: pre-wrap;
+	}
+	/* .link-card {
+		list-style: none;
+		display: flex;
+		padding: 1px;
+		background-color: #23262d;
+		background-image: none;
+		background-size: 400%;
+		border-radius: 7px;
+		background-position: 100%;
+		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+		box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+	}
+	.link-card > a {
+		width: 100%;
+		text-decoration: none;
+		line-height: 1.4;
+		padding: calc(1.5rem - 1px);
+		border-radius: 8px;
+		color: white;
+		background-color: #23262d;
+		opacity: 0.8;
+	}
+	h2 {
+		margin: 0;
+		font-size: 1.25rem;
+		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	p {
+		margin-top: 0.5rem;
+		margin-bottom: 0;
+	}
+	.link-card:is(:hover, :focus-within) {
+		background-position: 0;
+		background-image: var(--accent-gradient);
+	}
+	.link-card:is(:hover, :focus-within) h2 {
+		color: rgb(var(--accent-light));
+	} */
+</style>

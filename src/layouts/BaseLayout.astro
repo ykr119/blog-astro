@@ -1,0 +1,161 @@
+---
+import Nav from '../components/Navigation.astro';
+import "the-new-css-reset";
+import '@fontsource/libre-baskerville';
+import '@fontsource/roboto';
+const {pageTitle} = Astro.props
+---
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{pageTitle}</title>
+</head>
+<body>
+	<header>
+		<div class="header-nav">
+			<Nav />
+		</div>
+	</header>
+	<slot />
+	<footer>
+		<div class="wrapper">
+			<div class="footer-nav">
+				<div class="footer-nav__list">
+					<Nav />
+				</div>
+				<a href="mailto:yukari.k-web@gmail.com" class="footer-nav__contact">
+					<span>Contact</span>
+					<span><span class="dli-mail"></span>yukari.k-web@gmail.com</span>
+				</a>
+			</div>
+			<small>&copy; 2024 Yukari.K</small>
+		</div>
+	</footer>
+</body>
+</html>
+
+<style>
+	html {
+		scroll-behavior: smooth;
+		/* scroll-snap-type: y mandatory; */
+		overflow: scroll;
+	}
+	body {
+		background-color: #1e1e1e;
+		color: #ececec;
+		font-family: 'Roboto', sans-serif;
+	}
+
+	.wrapper {
+		max-width: 1200px;
+		margin-inline: auto;
+		padding-inline: 20px;
+		container-type: inline-size;
+	}
+
+	header {
+		padding: 1rem 1.5rem;
+
+		.header-nav {
+			max-width: 1440px;
+			margin-inline: auto;
+			display: flex;
+			justify-content: flex-end;
+			gap: 16px;
+			font-size: 18px;
+		}
+	}
+
+	footer {
+		margin-block: 100px 50px;
+		text-align: center;
+		font-size: 10px;
+
+		small {
+			display: block;
+			padding-top: 50px;
+		}
+		.footer-nav {
+			display: flex;
+			align-items: flex-end;
+			column-gap: 120px;
+
+			@container (max-width: 750px) {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 50px;
+			}
+		}
+
+		.footer-nav__list {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 32px;
+			font-size: 40px;
+		}
+
+		.footer-nav__contact {
+			display: block;
+			text-align: left;
+			border: 1px solid;
+			padding: 1em;
+			font-size: 40px;
+
+			@container (max-width: 750px) {
+				width: 100%;
+				padding: 10px;
+				font-size: calc(40 / 710 * 1cqw);
+			}
+
+			& > span {
+				font-size: 32px;
+				display: block;
+
+				@container (max-width: 750px) {
+					font-size: calc(32 / 710 * 100cqw);
+				}
+
+				& + span {
+					margin-top: 10px;
+					font-size: 40px;
+
+					@container (max-width: 750px) {
+						font-size: calc(40 / 710 * 100cqw);
+					}
+				}
+			}
+
+			.dli-mail {
+				margin-right: 20px;
+				display: inline-block;
+				vertical-align: middle;
+				line-height: 1;
+				position: relative;
+				width: 1.06667em;
+				height: 0.8em;
+				border: 0.1em solid currentColor;
+				border-radius: 0.1em;
+				box-sizing: content-box;
+				overflow: hidden;
+				}
+
+				.dli-mail::before {
+				content: '';
+				position: absolute;
+				left: 50%;
+				top: 0;
+				width: 0.75425em;
+				height: 0.75425em;
+				border: 0.1em solid currentColor;
+				border-top-color: transparent;
+				border-right-color: transparent;
+				border-radius: 0 0 0 0.1em;
+				box-sizing: content-box;
+				transform: translate(-50%, -50%) rotate(-45deg) skew(10deg, 10deg);
+			}
+		}
+	}
+</style>
