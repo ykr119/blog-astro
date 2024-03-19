@@ -40,7 +40,6 @@ const {pageTitle} = Astro.props
 <style>
 	html {
 		scroll-behavior: smooth;
-		/* scroll-snap-type: y mandatory; */
 		overflow: scroll;
 	}
 	body {
@@ -104,6 +103,16 @@ const {pageTitle} = Astro.props
 			border: 1px solid;
 			padding: 1em;
 			font-size: 40px;
+
+			span {
+				transition: scale .3s;
+			}
+
+			&:hover {
+				span {
+					scale: 1.02;
+				}
+			}
 
 			@container (max-width: 750px) {
 				width: 100%;
