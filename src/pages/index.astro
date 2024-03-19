@@ -10,7 +10,7 @@ const pageTitle = "Yukari.K"
 		<section id="code" class="section-code">
 			<div class="wrapper">
 				<h2>Code List</h2>
-				<p>案件等で使用したコードを随時まとめています。</p>
+				<p>案件等で使用したコードを随時投稿しています。<br>会社の都合で案件自体をポートフォリオとして公開することが難しいため、このような形で自分で書いたコードをまとめ始めました。目標：1日1件投稿。<br>(基本的にはPCで見ることを想定しています)</p>
 				<PostList />
 			</div>
 		</section>
@@ -33,13 +33,13 @@ const pageTitle = "Yukari.K"
 								<dd>VScode</dd>
 								<dd>Figma</dd>
 								<dd>Adobe XD</dd>
-								<dd>Git(SourceTree)</dd>
+								<dd>GitHub(SourceTree)</dd>
 								<dd>Backlog</dd>
 							</dl>
 						</section>
 						<section>
 							<h3>Like</h3>
-							<p>学ぶことが好きです。<br>仕事で使わない内容でも興味があれば、休日に勉強しています。<br>先日セミナーで聞いたAstro.jsに現在は特に興味があり、現在閲覧いただいているサイトをAstro.jsとMicroCMSを使って作りました。</p>
+							<p>学ぶことが好きです。<br>仕事で使わない内容でも興味があれば、休日に勉強しています。<br>先日セミナーで聞いたAstro.jsに現在は特に興味があり、現在閲覧いただいているサイトをAstro.jsとMicroCMSを初めて使って作りました。<br>GitHubとNetlifyを連携させて公開しております。</p>
 						</section>
 					</div>
 				</div>
@@ -61,7 +61,6 @@ const pageTitle = "Yukari.K"
 		container-type: inline-size;
 	}
 	section {
-		scroll-margin-top: 30px;
 
 		&:not(:first-of-type) {
 			margin-top: 100px;
@@ -77,13 +76,15 @@ const pageTitle = "Yukari.K"
 		z-index: -1;
 	}
 	h1 {
-		margin-block: 100px;
+		margin-block: 153px 100px;
 		font-size: 4rem;
 		line-height: 1;
 		text-align: center;
 		font-family: 'Libre Baskerville', serif;
 	}
 	.section-code {
+		scroll-margin-top: 30px;
+
 		h2 {
 			font-size: 60px;
 			font-family: 'Libre Baskerville', serif;
