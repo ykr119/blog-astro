@@ -6,11 +6,17 @@ const pageTitle = "Yukari.K"
 ---
 <Layout title="Welcome to Astro.">
 	<main>
-		<h1>{pageTitle}</h1>
+		<h1>
+			<span class="ttl">{pageTitle}</span>
+		</h1>
 		<section id="code" class="section-code">
 			<div class="wrapper">
-				<h2>Code List</h2>
-				<p>案件等で使用したコードを随時投稿しています。<br>会社の都合で案件自体をポートフォリオとして公開することが難しいため、このような形で自分で書いたコードをまとめ始めました。目標：1日1件投稿。<br>(基本的にはPCで見ることを想定しています)</p>
+				<h2 class="js-fadein">
+					<span>Code List</span>
+				</h2>
+				<p class="js-fadein">
+					<span>案件等で使用したコードを随時投稿しています。<br>会社の都合で案件自体をポートフォリオとして公開することが難しいため、<br>このような形で自分で書いたコードをまとめ始めました。目標：1日1件投稿。<br>(基本的にはPCで見ることを想定しています)</span>
+				</p>
 				<PostList />
 			</div>
 		</section>
@@ -19,7 +25,14 @@ const pageTitle = "Yukari.K"
 		<section id="about" class="section-about">
 			<div class="wrapper">
 				<div class="section-about__container">
-					<h2>About <br>Me</h2>
+					<h2>
+						<div class="js-fadein">
+							<span>About</span>
+						</div>
+						<div data-order="2">
+							<span>Me</span>
+						</div>
+					</h2>
 					<div>
 						<section>
 							<h3>Career</h3>
@@ -81,6 +94,21 @@ const pageTitle = "Yukari.K"
 		line-height: 1;
 		text-align: center;
 		font-family: 'Libre Baskerville', serif;
+		overflow: hidden;
+
+		span {
+			display: block;
+			animation: txtAnime .5s ease-in-out forwards;
+		}
+	}
+
+	@keyframes txtAnime {
+		0% {
+			transform: translateY(100%);
+		}
+		100% {
+			transform: translateY(0);
+		}
 	}
 	.section-code {
 		scroll-margin-top: 30px;
@@ -204,4 +232,57 @@ const pageTitle = "Yukari.K"
 			}
 		}
 	}
+
+	.js-fadein {
+		overflow: hidden;
+
+		span {
+			display: block;
+			transform: translateY(100%);
+		}
+	}
+
+	.js-fadein.is-active span {
+		animation: txtAnime .5s ease-in-out forwards;
+	}
+
+	[data-order="2"] {
+		overflow: hidden;
+
+		span {
+			display: block;
+			transform: translateY(100%);
+		}
+	}
+
+	.js-fadein.is-active + [data-order="2"] span {
+		animation: txtAnime .5s ease-in-out .3s forwards;
+	}
 </style>
+
+<script>
+	window.addEventListener('load', () => {
+    'use strict';
+
+    const targetElements = document.querySelectorAll('.js-fadein'),
+        addClass = 'is-active',
+        options = {
+            threshold: 1
+        };
+
+    const observer = new IntersectionObserver(showElements, options);
+
+    targetElements.forEach((targetElement) => {
+        observer.observe(targetElement);
+    });
+
+    function showElements(entries) {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // 各 .heading に .active を加える
+                entry.target.classList.add(addClass);
+            }
+        });
+    }
+});
+</script>
