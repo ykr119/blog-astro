@@ -24,9 +24,8 @@ const blog = await getBlogDetail(blogId as string);
     </div>
     <div class="bg">
         <div class="wrapper">
-        <div class="content" set:html={blog.content}></div>
-        <div class="description" set:html={blog.codeArea}></div>
-
+          <div class="description" set:html={blog.codeArea}></div>
+          <div class="content" set:html={blog.content}></div>
         </div>
     </div>
   </main>
@@ -88,7 +87,7 @@ const blog = await getBlogDetail(blogId as string);
       background-color: #fff;
       opacity: 0.8;
       position: absolute;
-      bottom: 5px;
+      top: 5px;
       right: 5px;
     }
   }
