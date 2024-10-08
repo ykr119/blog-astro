@@ -68,28 +68,28 @@ const blog = await getBlogDetail(blogId as string);
 
     pre {
       margin-top: 2em;
-      padding: 1em;
+      padding: 1em 7em 1em 1em;
       color: #fff;
       background-color: #333;
-      border-radius: 1em;
       user-select: none;
+      overflow-x: auto;
     }
 
     div[data-filename] {
       position: relative;
-      overflow: hidden;
     }
 
     div[data-filename]::after {
       content: attr(data-filename);
       display: block;
-      padding: 0.5em 1em;
-      font-size: 14px;
+      padding: 0.2em;
+      font-size: 10px;
       color: #333;
       background-color: #fff;
+      opacity: 0.8;
       position: absolute;
-      bottom: 0;
-      right: 0;
+      bottom: 5px;
+      right: 5px;
     }
   }
 </style>
